@@ -1,13 +1,11 @@
 package sfpetclinic.bootstrap;
 
-import model.Owner;
-import model.Vet;
+import sfpetclinic.model.Owner;
+import sfpetclinic.model.Vet;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import services.OwnerService;
-import services.VetService;
-import services.map.OwnerServiceMap;
-import services.map.VetServiceMap;
+import sfpetclinic.services.OwnerService;
+import sfpetclinic.services.VetService;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -15,9 +13,10 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        this.ownerService = new OwnerServiceMap();
-        this.vetService = new VetServiceMap();
+
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
@@ -25,21 +24,21 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setId(1L);
         owner1.setFirstName("Mateusz");
-        owner1.setFirstName("Koza");
+        owner1.setLastName("Koza");
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setId(2L);
         owner2.setFirstName("Kazimierz");
-        owner2.setFirstName("Nos");
+        owner2.setLastName("Nos");
 
         ownerService.save(owner2);
 
         Owner owner3 = new Owner();
         owner3.setId(3L);
         owner3.setFirstName("Waldemar");
-        owner3.setFirstName("Biesik");
+        owner3.setLastName("Biesik");
 
         ownerService.save(owner3);
 
